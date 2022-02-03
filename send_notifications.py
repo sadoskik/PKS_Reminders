@@ -22,7 +22,8 @@ log = open(logName, "w")
 
 
 for person in chores[dayOfWeek]:
-    print("Texting "+person["Name"]+" at "+person["Phone"])
+    log.write("Texting "+person["Name"]+" at "+person["Phone"])
+    log.write("\n")
 # client.api.account.messages.create(
 #     to="+12316851234",
 #     from_="+15555555555",
