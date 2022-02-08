@@ -33,3 +33,6 @@ for person in chores[dayOfWeek]:
     #     to=person["Phone"],
     #     from_="+14049742199",
     #     body="Reminder you have a chore today. Please remember to record it on the checkoff sheet.")
+
+log.close()
+choreFP.close()
