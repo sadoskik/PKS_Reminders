@@ -20,19 +20,19 @@ logName = time.strftime("/home/ubuntu/PKS_Reminders/log/NotificationBot_%Y_%m_%d
 log = open(logName, "w")
 client = Client(account_sid, auth_token)
 
-# client.api.account.messages.create(
-#         to="+13015030799",
-#         from_="+14049742199",
-#         body="Messages being sent.")
+client.api.account.messages.create(
+        to="+13015030799",
+        from_="+14049742199",
+        body="Messages being sent.")
 for person in chores[dayOfWeek]:
     log.write("Texting "+person["Name"]+" at "+person["Phone"])
     log.write("\n")
     print(person["Name"])
     print(person["Phone"])
-    # client.api.account.messages.create(
-    #     to=person["Phone"],
-    #     from_="+14049742199",
-    #     body="Reminder you have a chore today. Please remember to record it on the checkoff sheet.")
+    client.api.account.messages.create(
+        to=person["Phone"],
+        from_="+14049742199",
+        body="Reminder you have a chore today. Please remember to record it on the checkoff sheet. -Keaton")
 
 log.close()
 choreFP.close()
