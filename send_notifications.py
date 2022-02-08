@@ -10,21 +10,26 @@ import time
 today = date.today()
 dayOfWeek = today.strftime("%A")
 print(dayOfWeek)
-with open("config.json", "r") as f:
+with open("/home/ubuntu/PKS_Reminders/config.json", "r") as f:
     configs = json.load(f)
-    account_sid = configs["token"]
-    auth_token = configs["sid"]
-choreFP = open("chores.json")
+    account_sid = configs["sid"]
+    auth_token = configs["token"]
+choreFP = open("/home/ubuntu/PKS_Reminders/chores.json")
 chores = json.load(choreFP)
-logName = time.strftime("log/NotificationBot_%Y_%m_%d_%H_%M.txt")
+logName = time.strftime("/home/ubuntu/PKS_Reminders/log/NotificationBot_%Y_%m_%d_%H_%M.txt")
 log = open(logName, "w")
-#client = Client(account_sid, auth_token)
+client = Client(account_sid, auth_token)
 
-
+client.api.account.messages.create(
+        to="+13015030799",
+        from_="+14049742199",
+        body="Messages being sent.")
 for person in chores[dayOfWeek]:
     log.write("Texting "+person["Name"]+" at "+person["Phone"])
     log.write("\n")
-# client.api.account.messages.create(
-#     to="+12316851234",
-#     from_="+15555555555",
-#     body="Hello there!")
+    print(person["Name"])
+    print(person["Phone"])
+    client.api.account.messages.create(
+        to=person["Phone"],
+        from_="+14049742199",
+        body="Reminder you have a chore today. Please remember to record it on the checkoff sheet.")
